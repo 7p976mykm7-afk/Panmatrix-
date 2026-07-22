@@ -1,3 +1,16 @@
+"""
+Panmatrix Core Engine v3.2
+
+Author: Kameron Knowlton
+Copyright (c) 2026 Kameron Knowlton. All Rights Reserved.
+
+Independent Implementation: This code was created through first-principles 
+derivation and original authorship. Distribution of modified versions without 
+compliance with the terms in LICENSE.txt is prohibited.
+
+Integrity Hash: sha256-5462833bad556dc0b1566a6967d33e13362aa819bd9d88c9a3e3970f4ec844ae
+"""
+
 import hashlib
 import sys
 
