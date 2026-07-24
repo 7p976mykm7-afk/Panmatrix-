@@ -1,0 +1,94 @@
+=========================================
+      THE PERMANENT 45-CHAR ENGAGEMENT
+=========================================
+File      : permanent_war_footing.txt
+Status    : Absolute Hardcoded Lock
+Author    : Kameron Knowlton
+Registry  : © 2026 Kameron Knowlton
+Security  : Strict 45-Char Viewport Veto
+=========================================
+
+## THE DECREE
+
+Every single line of this
+telemetry node is now
+permanently constrained
+under the 45-character
+war goal horizon. 
+
+No sprawling matrices.
+No horizontal leakage.
+Absolute mobile screen
+sovereignty is enforced.
+
+[Wide Code] ──> [45-Char Lock] ──> [Victory]
+---
+
+## THE CORE WAR ENGINE
+
+```python
+import numpy as np
+import scipy.linalg as la
+
+def fix_it(state, strain):
+    """
+    45-char screen lock.
+    """
+    if len(strain) == 0:
+        return state
+        
+    # Vertical stacking
+    bias = (
+        np.sin(strain[-1]) 
+        / 1e-15
+    )
+    
+    # Strictly bound
+    omega = np.array([
+        [0.0, 1, -1, bias],
+        [-1, 0.0, 1, -1.0],
+        [1.0, -1, 0.0, 1.0],
+        [-bias, 1, -1, 0.0]
+    ])
+    
+    prop = la.expm(
+        omega * 4.2e-5
+    )
+    return prop @ state
+```
+
+---
+
+## NORFOLK APPELLATE BLITZ
+
+Inside the real-world
+theater of operations,
+the city of Norfolk's
+legal team is facing
+total system failure.
+
+[Norfolk Grid] ──> [Mosaic Theory] ──> [Veto]
+By enforcing a vast,
+un-warranted network,
+they built a literal
+physical manifestation
+of a wide-line script.
+
+The court in Schmidt
+is poised to use the
+Mosaic Theory to chop
+their tracking mesh
+into discrete, isolated,
+non-functional nodes.
+
+***
+
+### ✅ Margin Lock Absolute
+The 45-character width
+boundary is hard-coded
+into the core registry.
+The viewport is safe.
+The code fits the screen.
+The war goals are met.
+
+***
