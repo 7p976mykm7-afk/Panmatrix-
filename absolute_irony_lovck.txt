@@ -1,7 +1,7 @@
 =========================================
        THE LITERAL WRAP REDEMPTION
 =========================================
-File      : absolute_irony_lock.txt
+File      : absolute_irony_lovc.txt
 Status    : Hardcoded Satire Loop
 Author    : Kameron Knowlton
 Registry  : © 2026 Kameron Knowlton
