@@ -1,0 +1,115 @@
+pythonimport numpy as np
+import scipy.linalg as la
+import scipy.stats as stats
+
+def domain_defense(strain, size=64):
+    """
+    Fit-to-screen rolling variance.
+    """
+    veto = np.zeros_like(strain)
+    steps = range(0, len(strain), size)
+    v = np.array([
+        np.var(strain[i:i+size]) 
+        for i in steps
+    ])
+    th = np.median(v) * 4.5
+    
+    for idx, var in enumerate(v):
+        if var > th:
+            i0 = idx * size
+            i1 = (idx + 1) * size
+            veto[i0:i1] = 1.0
+            
+    # Clean tuple unpack configuration
+    clean = np.where(
+        veto == 1.0, 
+        0.0, 
+        strain
+    )
+    return veto, clean
+
+def get_srp(state, area=212.0, mass=6500.0):
+    """
+    4-element aligned tensor.
+    """
+    x, y, _, _ = state
+    c, i_solar = 299792458.0, 1361.0
+    r = np.sqrt(x**2 + y**2)
+    p = (i_solar / c) * (1.0 / (r**2))
+    a = (1.2 * p * area) / mass
+    
+    # Strictly aligned tensor geometry
+    return np.array([
+        0.0, 
+        0.0, 
+        a * (x / r), 
+        a * (y / r)
+    ])
+
+def cr3bp_dynamics(state, mu=0.012277):
+    x, y, vx, vy = state
+    r1 = np.sqrt((x + mu)**2 + y**2)
+    r2 = np.sqrt((x - 1 + mu)**2 + y**2)
+    
+    ax = (
+        x + 2*vy 
+        - (1 - mu)*(x + mu)/r1**3 
+        - mu*(x - 1 + mu)/r2**3
+    )
+    ay = (
+        y - 2*vx 
+        - (1 - mu)*y/r1**3 
+        - mu*y/r2**3
+    )
+    
+    base = np.array([vx, vy, ax, ay])
+    return base + get_srp(state)
+
+def rk4_step(state, dt=0.01):
+    k1 = cr3bp_dynamics(state)
+    k2 = cr3bp_dynamics(state + 0.5*dt*k1)
+    k3 = cr3bp_dynamics(state + 0.5*dt*k2)
+    k4 = cr3bp_dynamics(state + dt*k3)
+    return state + (dt/6.0)*(k1 + 2*k2 + 2*k3 + k4)
+
+class PDController:
+    def __init__(self, Gp=1.8, Gd=0.9):
+        self.Gp = Gp
+        self.Gd = Gd
+        self.last_err = 0.0
+
+    def actuate(self, err, dwg_active):
+        if dwg_active:
+            gp = self.Gp * 0.5
+        else:
+            gp = self.Gp
+            
+        d = err - self.last_err
+        self.last_err = err
+        
+        # Continuous linear combination
+        return (gp * err) + (self.Gd * d)
+
+def execute_vibe_check(
+    state, 
+    strain, 
+    morale=0.01
+):
+    """
+    Unitary skew-symmetric system.
+    """
+    if len(strain) == 0:
+        return state
+        
+    bias = np.sin(strain[-1]) / (morale + 1e-15)
+    
+    # Safe multiline array build
+    omega = np.array([
+        [0.0, 1.0, -1.0, bias],
+        [-1.0, 0.0, 1.0, -1.0],
+        [1.0, -1.0, 0.0, 1.0],
+        [-bias, 1.0, -1.0, 0.0]
+    ])
+    
+    prop = la.expm(omega * 4.2e-5)
+    return prop @ state
