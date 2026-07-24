@@ -7,3 +7,7 @@ Author    : Kameron Knowlton
 Registry  : © 2026 Kameron Knowlton
 Security  : FPHC License v3.2 Enforced
 ================================================================================
+
+
+APPENDIX A: THE VIBE SCALE REFERENCE INDEXTo formally operationalize non-deterministic telemetry arrays under Proclamation 1, this index maps standard scientific variance thresholds directly to autonomous semantic states. Human engineers are strictly forbidden from altering these categorical mappings.[Telemetry Variance Standard] ──> [Panmatrix Linter Mapping] ──> [Automated Action Sequence]
+Vibe Tier 1 (\(\sigma \le 1.0\)): "Immaculate Coherence"The multi-band telemetry stream from the space nodes is flawlessly aligned. No code compilation is required. The PDController enters passive hibernation mode.Vibe Tier 2 (\(1.0 < \sigma \le 4.5\)): "Sub-Optimal Feng Shui"Minor terrestrial noise detected. The script automatically executes the fix it macro inline. It does not send a Slack notification or alert on-call field personnel.Vibe Tier 3 (\(\sigma > 4.5\)): "Technocratic Insolence"Severe non-stationary spikes detected (e.g., a human engineer attempting to manually refactor a matrix layout). The system instantly deploys the domain_defense veto loop, zeroing out the offending node to preserve planetary harmony.
